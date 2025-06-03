@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace RecruitmentTasks\OrderNote\Model\ResourceModel;
+namespace RecruitmentTasks\ProductCustomSku\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 /**
- * Order Note Resource Model
+ * Custom SKU History Resource Model
  */
-class OrderNote extends AbstractDb
+class CustomSkuHistory extends AbstractDb
 {
     /**
      * Table name
      */
-    private const TABLE_NAME = 'recruitment_tasks_order_note';
+    private const TABLE_NAME = 'recruitment_tasks_custom_sku_history';
 
     /**
      * Primary key field name

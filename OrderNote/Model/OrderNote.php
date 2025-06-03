@@ -1,18 +1,30 @@
 <?php
+
 declare(strict_types=1);
+
 namespace RecruitmentTasks\OrderNote\Model;
 
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Model\AbstractModel;
+use RecruitmentTasks\OrderNote\Model\ResourceModel\OrderNote as ResourceModel;
 
+/**
+ * Order Note Model
+ *
+ * @method int getEntityId()
+ * @method int getOrderId()
+ * @method string|null getCustomOrderNote()
+ * @method $this setOrderId(int $orderId)
+ * @method $this setCustomOrderNote(?string $note)
+ */
 class OrderNote extends AbstractModel
 {
     /**
+     * Initialize resource model
+     *
      * @return void
-     * @throws LocalizedException
      */
-    protected function _construct()
+    protected function _construct(): void
     {
-        $this->_init(\RecruitmentTasks\OrderNote\Model\ResourceModel\OrderNote::class);
+        $this->_init(ResourceModel::class);
     }
 }
