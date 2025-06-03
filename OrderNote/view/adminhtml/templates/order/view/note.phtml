@@ -1,0 +1,14 @@
+<?php /** @var \RecruitmentTasks\OrderNote\Block\Order\Note $block */ ?>
+<?php $note = $block->getAdminOrderNote(); ?>
+<?php if ($note): ?>
+    <div class="admin__page-section-item order-shipping-method">
+        <div class="admin__page-section-item-title">
+            <span class="title"><?= $block->escapeHtml(__('Custom Order Note: ')) ?></span>
+        </div>
+        <div class="box-content">
+            <div class="admin__page-section-item-content">
+                <?= $block->escapeHtml($note) ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

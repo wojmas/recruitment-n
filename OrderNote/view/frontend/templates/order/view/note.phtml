@@ -1,0 +1,12 @@
+<?php /** @var \RecruitmentTasks\OrderNote\Block\Order\Note $block */ ?>
+<?php $note = $block->getFrontendOrderNote(); ?>
+<?php if ($note): ?>
+    <div class="block-content">
+        <strong class="box-title">
+            <span class="title"><?= $block->escapeHtml(__('Custom Order Note: ')) ?></span>
+        </strong>
+        <div class="box-content">
+            <?= $block->escapeHtml($note) ?>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,27 @@
+{
+    "name": "recruitmenttasks/module-ordernote",
+    "description": "Magento 2 module, adds a custom note field to the order.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+        "php": "^8.4",
+        "magento/framework": "^103.0",
+        "magento/module-sales": "^103.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "RecruitmentTasks\\OrderNote\\": ""
+        }
+    },
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "Wojciech Mastej"
+        }
+    ]
+}
