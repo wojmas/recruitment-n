@@ -12,28 +12,26 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 /**
- * Patch for installing custom_sku product attribute
+ * Data patch responsible for installing custom_sku product attribute
+ *
+ * @see \Magento\Framework\Setup\Patch\DataPatchInterface
  */
 class AddCustomSkuAttribute implements DataPatchInterface
 {
-    /**
-     * Custom SKU attribute code
-     */
     public const CUSTOM_SKU_ATTRIBUTE = 'custom_sku';
 
-    /**
-     * @param ModuleDataSetupInterface $moduleDataSetup
-     * @param EavSetupFactory $eavSetupFactory
-     */
     public function __construct(
         private readonly ModuleDataSetupInterface $moduleDataSetup,
         private readonly EavSetupFactory $eavSetupFactory
     ) {}
 
     /**
-     * Adds custom_sku attribute to product entity
-     *
-     * @return void
+     * Adds custom_sku attribute to product entity with following properties:
+     * - global scope
+     * - varchar type with max length 128
+     * - unique values
+     * - searchable
+     * - visible in admin
      */
     public function apply(): void
     {
@@ -65,9 +63,7 @@ class AddCustomSkuAttribute implements DataPatchInterface
     }
 
     /**
-     * Dependencies for this patch
-     *
-     * @return array
+     * @return array<int, string>
      */
     public static function getDependencies(): array
     {
@@ -75,9 +71,7 @@ class AddCustomSkuAttribute implements DataPatchInterface
     }
 
     /**
-     * Aliases for this patch
-     *
-     * @return array
+     * @return array<int, string>
      */
     public function getAliases(): array
     {

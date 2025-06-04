@@ -11,10 +11,28 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
 
+/**
+ * Custom SKU History Grid Data Provider
+ */
 class CustomSkuHistoryProvider extends DataProvider
 {
+    /**
+     * @var UrlInterface
+     */
     private UrlInterface $urlBuilder;
 
+    /**
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
+     * @param ReportingInterface $reporting
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param RequestInterface $request
+     * @param FilterBuilder $filterBuilder
+     * @param UrlInterface $urlBuilder
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
         $primaryFieldName,
@@ -41,7 +59,12 @@ class CustomSkuHistoryProvider extends DataProvider
         $this->urlBuilder = $urlBuilder;
     }
 
-    public function getData()
+    /**
+     * Get data with added links for product_id and user_id
+     *
+     * @return array
+     */
+    public function getData(): array
     {
         $data = parent::getData();
 

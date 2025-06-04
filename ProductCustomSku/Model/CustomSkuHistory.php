@@ -22,8 +22,6 @@ use RecruitmentTasks\ProductCustomSku\Model\ResourceModel\CustomSkuHistory as Re
 class CustomSkuHistory extends AbstractModel
 {
     /**
-     * Initialize resource model
-     *
      * @return void
      */
     protected function _construct(): void

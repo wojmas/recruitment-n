@@ -12,28 +12,24 @@ use RecruitmentTasks\ProductCustomSku\Model\ResourceModel\CustomSkuHistory as Cu
 use RecruitmentTasks\ProductCustomSku\Setup\Patch\Data\AddCustomSkuAttribute;
 
 /**
- * Plugin for logging custom_sku attribute changes
+ * Logs changes of custom_sku attribute for products in global scope
+ *
+ * @see \Magento\Catalog\Model\ResourceModel\Product::save()
  */
 class LogCustomSkuChanges
 {
-    /**
-     * @param CustomSkuHistoryFactory $historyFactory
-     * @param CustomSkuHistoryResource $historyResource
-     * @param AuthSession $authSession
-     */
     public function __construct(
         private readonly CustomSkuHistoryFactory $historyFactory,
         private readonly CustomSkuHistoryResource $historyResource,
         private readonly AuthSession $authSession
-    ) {
-    }
+    ) {}
 
     /**
-     * Before save plugin to log changes of custom_sku attribute
+     * Saves history record when custom_sku value changes in global scope
      *
      * @param Product $subject
      * @param AbstractModel $product
-     * @return array
+     * @return array{0: AbstractModel}
      */
     public function beforeSave(Product $subject, AbstractModel $product): array
     {
@@ -41,18 +37,15 @@ class LogCustomSkuChanges
             return [$product];
         }
 
-        //check if store id 0, attribute is set to global we don't need future checks if not global changes
         if ($product->getAttributeSetId() && $product->getStoreId() === 0) {
             $oldValue = $product->getOrigData(AddCustomSkuAttribute::CUSTOM_SKU_ATTRIBUTE);
             $newValue = $product->getData(AddCustomSkuAttribute::CUSTOM_SKU_ATTRIBUTE);
-
 
             if ($oldValue !== $newValue) {
                 $history = $this->historyFactory->create();
                 $history->setData([
                     'product_id' => (int)$product->getId(),
                     'old_value' => $oldValue,
-                    //set 0 for api
                     'user_id' => $this->authSession->getUser()?->getId() ?? 0
                 ]);
 

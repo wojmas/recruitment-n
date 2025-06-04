@@ -22,8 +22,6 @@ class CustomSkuHistory extends AbstractDb
     private const PRIMARY_KEY = 'entity_id';
 
     /**
-     * Initialize resource model
-     *
      * @return void
      */
     protected function _construct(): void
